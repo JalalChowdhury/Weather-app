@@ -23,6 +23,12 @@ searchButton.addEventListener('click',function (){
 
     const searchText = searchInput.value;
 
+    if(searchText===""){
+        displayError(); 
+        return;
+
+    }
+
     // update hobe next ... 
     // displayBackgroundImage(searchText);
 
@@ -31,11 +37,13 @@ searchButton.addEventListener('click',function (){
     fetch(apiUrl)
         .then(res => res.json())
         .then(data => {
-            if(data == "404"){
+            console.log(data);
+            if(data.cod  === "404"){
                 displayError();
 
             }
             else{
+
                 displayTemperature(data);
             }
         });
@@ -68,9 +76,9 @@ const displayBackgroundImage = cityName => {
 
 const displayError = () => {
 
-     
+    errorMessage.style.display = "block"; 
     weatherDetail.style.display = "none";
-    errorMessage.style.display = "block";
+   
 
 
 
